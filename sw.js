@@ -1,5 +1,5 @@
 /* Offline cache. Bump VERSION when the app files change. */
-var VERSION = 'partstock-v1';
+var VERSION = 'partstock-v2';
 var ASSETS = ['./', 'index.html', 'app.css', 'app.js', 'i18n.js', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(VERSION).then(function (c) { return c.addAll(ASSETS); }).then(function () { return self.skipWaiting(); }));

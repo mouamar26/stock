@@ -1,7 +1,8 @@
 (function () {
 'use strict';
 var CUR = 'N-UM';
-var VERSION = '1.0.0';
+var VERSION = '1.1.0';
+var DEFAULT_PHONE = '42632472 · 36886326';
 
 /* ============ helpers ============ */
 var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -17,6 +18,9 @@ var timeStr = function (t) { var d = new Date(t); return pad(d.getHours()) + ':'
 var uid = function () { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); };
 var money = function (n) { return '<bdi class="m">' + fmt(n) + '<span class="cur">' + CUR + '</span></bdi>'; };
 var moneyT = function (n) { return fmt(n) + ' ' + CUR; };
+function brandHTML(name) { var m = String(name).match(/^(.*?)(\++)$/); return m ? esc(m[1]) + '<span class="pl">' + esc(m[2]) + '</span>' : esc(name); }
+var shopName = function () { return (S.settings.shop || '').trim() || t('app_title'); };
+var shopPhone = function () { return (S.settings.phone || '').trim() || DEFAULT_PHONE; };
 
 /* ============ i18n ============ */
 var LANG = 'ar';
@@ -175,9 +179,8 @@ function setTexts() {
   $('#sortSel').value = ui.sort;
 }
 function renderAll() {
-  var shop = (S.settings.shop || '').trim();
-  $('#shopTitle').textContent = shop || t('app_title');
-  $('#shopSub').textContent = shop ? t('app_title') : t('app_sub');
+  $('#shopTitle').innerHTML = brandHTML(shopName());
+  $('#shopSub').textContent = t('app_sub');
   ['stock', 'sell', 'moves', 'more'].forEach(function (k) {
     $('#n-' + k).setAttribute('aria-selected', k === ui.tab ? 'true' : 'false');
     $('#p-' + k).hidden = k !== ui.tab;
@@ -551,13 +554,13 @@ function renderPicker() {
 /* ----- invoice ----- */
 function invoiceHTML(s) {
   var rows = s.items.map(function (it) { return '<tr><td>' + esc(it.label) + (it.code ? ' <span class="code">' + esc(it.code) + '</span>' : '') + '</td><td class="n">' + fmt(it.qty) + '</td><td class="n">' + fmt(it.price) + '</td><td class="n">' + fmt(it.qty * it.price) + '</td></tr>'; }).join('');
-  return '<div class="inv"><div class="h"><b>' + esc(S.settings.shop || t('app_title')) + '</b><span>' + esc(t('invoice_short', { n: pad(s.no, 4) })) + ' · ' + esc(dayKey(s.t)) + ' ' + timeStr(s.t) + '</span></div>' +
+  return '<div class="inv"><div class="h"><b>' + esc(shopName()) + '</b><span>' + esc(t('invoice_short', { n: pad(s.no, 4) })) + ' · ' + esc(dayKey(s.t)) + ' ' + timeStr(s.t) + '</span></div><div class="hint" dir="ltr" style="text-align:start">' + esc(shopPhone()) + '</div>' +
     (s.customer ? '<div>' + esc(t('inv_customer', { x: s.customer })) + '</div>' : '') +
     '<table><thead><tr><th>' + esc(t('inv_col_item')) + '</th><th class="n">' + esc(t('inv_col_qty')) + '</th><th class="n">' + esc(t('inv_col_price')) + '</th><th class="n">' + esc(t('inv_col_total')) + '</th></tr></thead><tbody>' + rows + '</tbody></table>' +
     '<div class="tt"><span>' + esc(t('total')) + '</span>' + money(s.total) + '</div></div>';
 }
 function invoiceText(s) {
-  var o = [S.settings.shop || t('app_title'), t('invoice_short', { n: pad(s.no, 4) }) + ' · ' + dayKey(s.t) + ' ' + timeStr(s.t)];
+  var o = [shopName(), shopPhone(), t('invoice_short', { n: pad(s.no, 4) }) + ' · ' + dayKey(s.t) + ' ' + timeStr(s.t)];
   if (s.customer) o.push(t('inv_customer', { x: s.customer }));
   s.items.forEach(function (it) { o.push('- ' + it.label + ' × ' + fmt(it.qty) + ' = ' + moneyT(it.qty * it.price)); });
   o.push(t('total') + ': ' + moneyT(s.total)); return o.join('\n');
@@ -627,9 +630,10 @@ function orderText(k) {
 /* ----- settings / backup ----- */
 function openSettings() {
   var html = '<form id="sheetForm" class="form" novalidate><div class="field"><label for="f-shop">' + esc(t('set_shop')) + '</label><input id="f-shop" autocomplete="off" value="' + esc(S.settings.shop || '') + '"></div>' +
+    '<div class="field"><label for="f-phone">' + esc(t('set_phone')) + '</label><input id="f-phone" inputmode="tel" autocomplete="off" placeholder="' + esc(DEFAULT_PHONE) + '" value="' + esc(S.settings.phone || '') + '"></div>' +
     '<div class="field"><label>' + esc(t('set_lang')) + '</label><div class="chips"><button class="chip" type="button" data-action="setlang" data-l="ar" aria-pressed="' + (LANG === 'ar') + '">العربية</button><button class="chip" type="button" data-action="setlang" data-l="fr" aria-pressed="' + (LANG === 'fr') + '">Français</button></div></div>' +
     '<div class="actions"><button class="btn primary" type="submit">' + esc(t('save')) + '</button><button class="btn" type="button" data-action="close">' + esc(t('cancel')) + '</button></div></form>';
-  openSheet(t('set_title'), html, function () { S.settings.shop = val('shop'); persist([settingsPut()]); closeSheet(); renderAll(); }, '#f-shop');
+  openSheet(t('set_title'), html, function () { S.settings.shop = val('shop'); S.settings.phone = val('phone'); persist([settingsPut()]); closeSheet(); renderAll(); }, '#f-shop');
 }
 function openBackup() {
   var lb = S.settings.lastBackup;

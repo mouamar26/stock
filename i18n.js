@@ -1,7 +1,7 @@
 /* Arabic + French strings. Placeholders look like {name}. */
 window.I18N = {
 ar: {
-  app_title:'مخزن قطع الغيار', app_sub:'القطع والكميات والبيع والفواتير',
+  app_title:'TURBO++', app_sub:'قطع غيار السيارات والتشخيص',
   tab_stock:'المخزون', tab_sell:'البيع', tab_moves:'الحركات', tab_more:'المزيد',
   sync_local:'محفوظ على هذا الجهاز',
   search_ph:'ابحث: اسم، كود، سيارة، رف', f_all:'الكل', f_low:'ناقص', f_out:'منتهي',
@@ -55,7 +55,7 @@ ar: {
   sup_need:'تحتاج طلبية ({n})', sup_ok:'كل قطع هذا المورد متوفرة.', sup_none:'بدون مورد', sup_copy:'نسخ قائمة الطلب',
   sup_parts:'عرض القطع', sup_delete:'حذف', sup_empty:'لا يوجد موردون بعد.',
   order_head:'طلب قطع إلى {x}:', order_head_plain:'طلب قطع:', order_line:'- {name} — المتوفر {q}، المطلوب {n}',
-  set_title:'الإعدادات', set_shop:'اسم المتجر', set_lang:'اللغة',
+  set_title:'الإعدادات', set_shop:'اسم المتجر', set_phone:'هاتف المتجر (يظهر في الفاتورة)', set_lang:'اللغة',
   bk_title:'النسخ الاحتياطي والتصدير', bk_export:'تنزيل نسخة احتياطية', bk_import:'استعادة من نسخة احتياطية',
   bk_csv_inv:'تصدير المخزون (Excel)', bk_csv_mov:'تصدير الحركات (Excel)',
   bk_last:'آخر نسخة احتياطية: {d}', bk_never:'لم تحفظ نسخة احتياطية بعد.',
@@ -67,7 +67,7 @@ ar: {
   lang_name:'العربية', lang_other:'FR'
 },
 fr: {
-  app_title:'Stock pièces auto', app_sub:'Pièces, stock, ventes et factures',
+  app_title:'TURBO++', app_sub:'Pièces Auto & Diagnostic',
   tab_stock:'Stock', tab_sell:'Vente', tab_moves:'Mouvements', tab_more:'Plus',
   sync_local:'Enregistré sur cet appareil',
   search_ph:'Rechercher : nom, code, voiture, étagère', f_all:'Tout', f_low:'Faible', f_out:'Épuisé',
@@ -121,7 +121,7 @@ fr: {
   sup_need:'À commander ({n})', sup_ok:'Tout est en stock chez ce fournisseur.', sup_none:'Sans fournisseur', sup_copy:'Copier la liste de commande',
   sup_parts:'Voir les pièces', sup_delete:'Supprimer', sup_empty:'Aucun fournisseur pour l\'instant.',
   order_head:'Commande de pièces pour {x} :', order_head_plain:'Commande de pièces :', order_line:'- {name} — stock {q}, à commander {n}',
-  set_title:'Paramètres', set_shop:'Nom du magasin', set_lang:'Langue',
+  set_title:'Paramètres', set_shop:'Nom du magasin', set_phone:'Téléphone du magasin (sur la facture)', set_lang:'Langue',
   bk_title:'Sauvegarde et export', bk_export:'Télécharger une sauvegarde', bk_import:'Restaurer une sauvegarde',
   bk_csv_inv:'Exporter le stock (Excel)', bk_csv_mov:'Exporter les mouvements (Excel)',
   bk_last:'Dernière sauvegarde : {d}', bk_never:'Aucune sauvegarde pour l\'instant.',

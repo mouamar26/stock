@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "مخزن قطع الغيار",
-  "short_name": "المخزن",
-  "description": "إدارة مخزون قطع الغيار والبيع والفواتير بدون إنترنت",
+  "name": "TURBO++",
+  "short_name": "TURBO++",
+  "description": "TURBO++ : إدارة المخزون والبيع والفواتير بدون إنترنت",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
@@ -10,7 +10,7 @@
   "dir": "rtl",
   "lang": "ar",
   "background_color": "#EDF1F2",
-  "theme_color": "#17687A",
+  "theme_color": "#0A2A8F",
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
     { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
