@@ -1,7 +1,7 @@
 (function () {
 'use strict';
 var CUR = 'N-UM';
-var VERSION = '1.1.0';
+var VERSION = '1.1.1';
 var DEFAULT_PHONE = '42632472 · 36886326';
 
 /* ============ helpers ============ */
