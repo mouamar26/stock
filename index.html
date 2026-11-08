@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>مخزن قطع الغيار</title>
+<meta name="theme-color" content="#17687A">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 2.8l7.8 4.5v9.4L12 21.2l-7.8-4.5V7.3z"/><circle cx="12" cy="12" r="3.2"/></svg></div>
+      <div><h1 id="shopTitle"></h1><p class="sub" id="shopSub"></p></div>
+    </div>
+    <div class="top-actions">
+      <span class="sync"><i></i><span id="syncTxt"></span></span>
+      <button class="icon-btn lang-btn" data-action="lang" id="langBtn" type="button"></button>
+    </div>
+  </header>
+
+  <div id="banner"></div>
+
+  <nav class="nav" id="nav" aria-label="main">
+    <button class="tab" type="button" data-action="tab" data-tab="stock" id="n-stock"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3.5 8L12 4l8.5 4v8L12 20l-8.5-4z"/><path d="M3.5 8L12 12l8.5-4M12 12v8"/></svg><span id="l-stock"></span></button>
+    <button class="tab" type="button" data-action="tab" data-tab="sell" id="n-sell"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.5l2 11h10l2-8H7"/><circle cx="9" cy="19" r="1.3"/><circle cx="17" cy="19" r="1.3"/></svg><span id="l-sell"></span><b class="badge" id="cartBadge" hidden></b></button>
+    <button class="tab" type="button" data-action="tab" data-tab="moves" id="n-moves"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13l-3-3M20 16H7l3 3"/></svg><span id="l-moves"></span></button>
+    <button class="tab" type="button" data-action="tab" data-tab="more" id="n-more"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="5.5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="18.5" cy="12" r="1.2"/></svg><span id="l-more"></span></button>
+  </nav>
+
+  <main>
+    <section class="panel" id="p-stock">
+      <section class="stats" id="stats"></section>
+      <div class="bar">
+        <div class="search"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><input id="q" type="search" autocomplete="off" aria-label="search"></div>
+        <button class="btn primary add-desk" type="button" data-action="add-part" id="addBtn"></button>
+      </div>
+      <div class="bar">
+        <div class="chips" id="chips" role="group"></div>
+        <select id="vehSel"></select>
+        <select id="sortSel"></select>
+      </div>
+      <div class="list" id="partList"></div>
+    </section>
+    <section class="panel" id="p-sell" hidden></section>
+    <section class="panel" id="p-moves" hidden></section>
+    <section class="panel" id="p-more" hidden></section>
+  </main>
+</div>
+
+<button class="btn primary fab" type="button" data-action="add-part" id="fab"></button>
+
+<div class="overlay" id="overlay" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+    <div class="sheet-head"><h2 id="sheetTitle"></h2><button class="icon-btn" type="button" data-action="close" aria-label="close"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div id="printArea"></div>
+
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
